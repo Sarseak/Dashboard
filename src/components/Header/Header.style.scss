@@ -1,0 +1,96 @@
+// src/components/Header/Header.style.scss
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 20px;
+  height: 70px;
+  background-color: #fff;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+
+  .header-left {
+    display: flex;
+    align-items: center;
+    
+    .menu-icon {
+      font-size: 24px;
+      margin-right: 15px;
+      cursor: pointer;
+    }
+    
+    .logo {
+      font-size: 24px;
+      font-weight: 600;
+      color: #4361ee;
+      margin: 0;
+    }
+  }
+  
+  .header-center {
+    flex: 1;
+    max-width: 500px;
+    margin: 0 20px;
+    
+    .search-bar {
+      display: flex;
+      
+      input {
+        flex: 1;
+        padding: 10px 15px;
+        border: 1px solid #ddd;
+        border-radius: 5px 0 0 5px;
+        outline: none;
+      }
+      
+      button {
+        padding: 10px 15px;
+        background-color: #4361ee;
+        color: white;
+        border: none;
+        border-radius: 0 5px 5px 0;
+        cursor: pointer;
+      }
+    }
+  }
+  
+  .header-right {
+    display: flex;
+    align-items: center;
+    
+    .notifications {
+      margin-right: 20px;
+      cursor: pointer;
+      
+      span {
+        font-size: 20px;
+      }
+    }
+    
+    .user-info {
+      display: flex;
+      align-items: center;
+      
+      .user-name {
+        margin-right: 10px;
+        font-weight: 500;
+      }
+      
+      .user-avatar {
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        background-color: #4361ee;
+        color: white;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-weight: bold;
+      }
+    }
+  }
+}
