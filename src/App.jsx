@@ -22,7 +22,7 @@ function App() {
               <Dashboard/>
             </ProtectedRoute>
           }/>
-          <Route path='/products' element={
+          <Route path='/produtos' element={
             <ProtectedRoute>
               <Produto/>
             </ProtectedRoute>

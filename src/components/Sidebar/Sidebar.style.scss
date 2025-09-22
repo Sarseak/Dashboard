@@ -1,65 +1,110 @@
-// src/components/Sidebar/Sidebar.style.scss
 .sidebar {
-  width: 250px;
-  background-color: #2d3e50;
-  color: white;
+  width: 240px;
   height: 100vh;
+  background-color: #f1f2f7;
   position: fixed;
-  top: 70px;
+  top: 0;
   left: 0;
-  padding-top: 20px;
+  border-right: 1px solid rgba(229, 231, 235, 0.4);
+  display: flex;
+  flex-direction: column;
+  z-index: 1000;
 
-  .sidebar-nav {
+  .sidebar-logo {
+  height: 70px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start; // agora fica à esquerda
+  border-bottom: 1px solid #e5e7eb;
+  padding: 0 1rem;
+
+  img {
+    height: 19px;
+    object-fit: contain;
+    margin-right: 8px; // espaço entre logo e texto
+  }
+
+  h1 {
+    font-size: 13px;   // pode aumentar um pouco se quiser igual à imagem
+    color: #5A67BA;
+    font-weight: 600;
+  }
+}
+
+
+  .sidebar-content {
+    flex: 1;
+    padding: 1rem;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+     }
+
+  .sidebar-section {
+    margin-bottom: 2rem;
+
+    .sidebar-title {
+      font-size: 0.75rem;
+      font-weight: 500;
+      text-transform: uppercase;
+      color: #9ca3af;
+      margin-bottom: 1rem;
+      letter-spacing: 0.5px;
+    }
+
     ul {
       list-style: none;
       padding: 0;
       margin: 0;
 
       li {
-        margin-bottom: 5px;
+        display: flex;
+        align-items: center;
+        gap: 0.8rem;
+        padding: 0.6rem 0.8rem;
+        border-radius: 8px;
+        cursor: pointer;
+        color: #273240;
+        font-size: 0.95rem;
+        transition: background 0.2s ease;
 
-        a, button {
-          display: flex;
-          align-items: center;
-          padding: 15px 20px;
-          color: #a0a0a0;
-          text-decoration: none;
-          border: none;
-          background: none;
-          width: 100%;
-          text-align: left;
-          cursor: pointer;
-          transition: all 0.3s;
+        svg {
+          font-size: 1.1rem;
+          opacity: 0.6;
+        }
 
-          &:hover {
-            background-color: #34495e;
-            color: white;
-          }
+        span {
+          flex: 1;
+        }
 
-          span:first-child {
-            margin-right: 10px;
-            font-size: 18px;
+        &:hover {
+          background-color: rgba(112, 127, 221, 0.08);
+          color: #5a6acf;
+
+          svg {
+            color: #5a6acf;
+            opacity: 1;
           }
         }
 
         &.active {
-          a {
-            background-color: #4361ee;
-            color: white;
+          background-color: rgba(112, 127, 221, 0.15);
+          color: #707fdd;
+          font-weight: 600;
+
+          svg {
+            color: #707fdd;
+            opacity: 1;
           }
         }
 
-        &.logout-item {
-          margin-top: 30px;
-          border-top: 1px solid #34495e;
-          padding-top: 10px;
+        &.logout:hover {
+          background-color: rgba(231, 76, 60, 0.1);
+          color: #e74c3c;
 
-          button {
+          svg {
             color: #e74c3c;
-
-            &:hover {
-              background-color: rgba(231, 76, 60, 0.1);
-            }
+            opacity: 1;
           }
         }
       }

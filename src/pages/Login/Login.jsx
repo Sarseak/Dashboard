@@ -2,11 +2,11 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { loginAndGetUser } from "../../services/Auth";
 import saly from "../../assets/saly-14.svg";
-import apple from "../../assets/apple.svg";
+import MeuGestor from "../../assets/MeuGestor.png";
+import logo from "../../assets/logo.svg";
 import Facebook from "../../assets/Facebook.svg";
 import google from "../../assets/google.svg";
-import Logo from "../../assets/logo.svg";
-import MeuGestor from "../../assets/MeuGestor.png";
+import apple from "../../assets/apple.svg";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
 import "./Login.style.scss";
 
@@ -26,24 +26,24 @@ function Login() {
 
   async function handleSubmit(e) {
     e.preventDefault();
-    
+
     // Validações
     if (!email.trim() || !senha.trim()) {
       setError("Preencha todos os campos");
       return;
     }
-    
+
     if (!isValidEmail(email)) {
       setError("Por favor, insira um email válido");
       return;
     }
-    
+
     setError(null);
     setLoading(true);
 
     try {
       const response = await loginAndGetUser({ email, password: senha });
-      
+
       // Verifica se temos um usuário e token
       if (response.user && response.token) {
         localStorage.setItem("user", JSON.stringify(response.user));
@@ -52,10 +52,10 @@ function Login() {
       } else {
         setError("Login falhou. Verifique suas credenciais.");
       }
-      
+
     } catch (err) {
       console.error("Erro no login:", err);
-      
+
       // Tratamento de erro melhorado
       if (err.response?.data?.message) {
         setError(err.response.data.message);
@@ -70,35 +70,28 @@ function Login() {
   }
 
   return (
-    <div className="pagina">
-      <div className="container-principal">
-        <div className="area-esquerda">
-          <div className="logo-container">
-            <img src={Logo} className="logo" alt="Logo" />
-          </div>
 
-          <div className="texto-esquerda">
-            <h1 className="titulo">
-              <b>Faça seu Login em</b>
-            </h1>
-            <h2 className="subtitulo">
-              <img src={MeuGestor} alt="Meu Gestor" />
-            </h2>
-            <p className="descricao">
-              Se você ainda não tem uma conta
-              <br />
-              Você pode se <a href="/register">registrar aqui</a>
-            </p>
-          </div>
+    <>
+      <div><img className="logo" src={logo} alt="MeuGestorLogo" /></div>
 
-          <img src={saly} alt="Ilustração" className="imagem-personagem" />
+      <div className="paginaLogin">
+
+        <div className="containerEsquerdo">
+          <div className="titulo">
+            <h1>Faça seu login em</h1>
+            <div className="MeuGestorText">
+              <img src={MeuGestor} alt="MeuGestorimage" />
+            </div>
+            <p>Se você ainda não tem uma conta. <br /> Você pode se <a href="#">Registrar aqui !</a></p>
+          </div>
+          <img className="saly" src={saly} alt="personagem do login" />
         </div>
 
-        <div className="area-direita">
-          <div className="caixa-login">
-            <h3 className="titulo-form">Login</h3>
+        <div className="containerDireito">
+          <div className="conteudoCD">
+            <h2>Login</h2>
 
-            <form onSubmit={handleSubmit} className="formulario-login">
+            <form onSubmit={handleSubmit}>
               <input
                 type="email"
                 placeholder="E-mail"
@@ -122,28 +115,33 @@ function Login() {
                 </span>
               </div>
 
-              {error && <p className="mensagem-erro">{error}</p>}
-              
               <p className="link-esqueci-senha">
-                <a href="/forgot-password">Esqueceu sua senha?</a>
+                <a href="#">Esqueceu sua senha?</a>
               </p>
 
               <button type="submit" className="botao-login" disabled={loading}>
                 {loading ? "Entrando..." : "Login"}
               </button>
 
-              <p className="texto-ou">ou continue com</p>
+              <p
+                className="mensagem-erro"
+                style={{ visibility: error ? "visible" : "hidden", minHeight: "22px", }}
+              >
+                {error}
+              </p>
 
-              <div className="area-redes">
-                <img src={Facebook} alt="Facebook" className="icone-rede" />
-                <img src={apple} alt="Apple" className="icone-rede" />
-                <img src={google} alt="Google" className="icone-rede" />
-              </div>
             </form>
+
+            <p className="MaisOpcoes">ou continue com</p>
+            <div className="redesSociais">
+              <a href="#"><img src={Facebook} alt="Login com Facebook" /></a>
+              <a href="#"><img src={apple} alt="Login com Apple" /></a>
+              <a href="#"><img src={google} alt="Login com Google" /></a>
+            </div>
           </div>
         </div>
       </div>
-    </div>
+    </>
   );
 }
 
